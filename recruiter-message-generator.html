@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LinkedIn Recruiter Message Generator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #eef3f8;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      max-width: 650px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #0073b1;
+    }
+
+    label {
+      margin-top: 12px;
+      display: block;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      background-color: #0073b1;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005b91;
+    }
+
+    #output {
+      margin-top: 30px;
+      background: #f9f9f9;
+      border-left: 5px solid #0073b1;
+      padding: 20px;
+      border-radius: 8px;
+      white-space: pre-wrap;
+    }
+
+    #linkBox {
+      margin-top: 20px;
+      background: #e6f0ff;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    a {
+      color: #004080;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Recruiter Message + LinkedIn Search</h1>
+
+  <label>Your Name</label>
+  <input type="text" id="name" placeholder="e.g. Amey Kulkarni">
+
+  <label>Your Experience Summary</label>
+  <input type="text" id="experience" placeholder="e.g. 6 years in design and project engineering">
+
+  <label>Target Company</label>
+  <input type="text" id="company" placeholder="e.g. JCB">
+
+  <label>City</label>
+  <input type="text" id="city" placeholder="e.g. Pune">
+
+  <label>Phone</label>
+  <input type="text" id="phone" placeholder="+91 XXXXX XXXXX">
+
+  <label>Email</label>
+  <input type="text" id="email" placeholder="yourmail@example.com">
+
+  <button onclick="generateMessage()">Generate Message + Search Link</button>
+
+  <div id="output"></div>
+  <div id="linkBox"></div>
+</div>
+
+<script>
+  function generateMessage() {
+    const name = document.getElementById('name').value;
+    const experience = document.getElementById('experience').value;
+    const company = document.getElementById('company').value;
+    const city = document.getElementById('city').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+
+    const message = `
+Hi,
+
+I came across your profile while exploring career opportunities and professional networks.
+
+With ${experience}, I'm eager to explore ways I can contribute to ${company}'s continued success.
+
+Looking forward to connecting and exchanging ideas.
+
+Warm regards,  
+<strong>${name}</strong><br>
+${city} | ${phone} | ${email}
+    `;
+
+    const linkedInLink = `https://www.linkedin.com/search/results/people/?keywords=Talent%20Acquisition%20${encodeURIComponent(company)}`;
+
+    document.getElementById('output').innerHTML = message;
+    document.getElementById('linkBox').innerHTML = `<strong>Search Recruiters on LinkedIn:</strong><br><a href="${linkedInLink}" target="_blank">${linkedInLink}</a>`;
+  }
+</script>
+
+</body>
+</html>
